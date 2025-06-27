@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block title %}Profile – Forum{% endblock title %}
+
+{% block content %}
+<h1>Profile: {{ user.username }}</h1>
+<p>Joined on {{ user.date_joined|date:"F j, Y" }}</p>
+
+<h2>Posts by {{ user.username }}</h2>
+<ul>
+  {% for room in rooms %}
+    <li>
+      <a href="{% url 'base:room' room.id %}">
+        {{ room.name }}
+      </a>
+      <!--— {{ room.date|date:"M j, Y" }}-->
+    </li>
+  {% empty %}
+    <li>No posts yet.</li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block title %}
+  {% if page == 'login' %}Login – Forum{% else %}Register – Forum{% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if page == 'login' %}
+    <div>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter Username"/>
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter Password"/>
+
+        <input type="submit" value="Login"/>
+      </form>
+      <a href="{% url 'usermanager:user-register' %}">Sign up</a>
+    </div>
+  {% else %}
+    <div>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <!-- your registration fields go here -->
+        <input type="submit" value="Register"/>
+      </form>
+      <p>Already have an account?</p>
+      <a href="{% url 'usermanager:user-login' %}">Log in</a>
+    </div>
+  {% endif %}
+{% endblock %}

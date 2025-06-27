@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/">
+  <h1>funny logo</h1>
+</a>
+<hr>
+{% if request.user.is_authenticated %}
+<a href="{% url 'usermanager:user-logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'usermanager:user-login' %}">Login</a>
+{% endif %}
+
+</body>
+</html>
