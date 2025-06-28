@@ -1,5 +1,4 @@
 from django.db import models
-#from django.contrib.auth.models import User
 from django.conf import settings
 
 #POST TOPIC (tags)
@@ -10,13 +9,11 @@ class Topic(models.Model):
 
 #POST THREAD
 class Room(models.Model):
-    #host=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     host = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.SET_NULL,null = True, related_name="posts")
     topic=models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200)
     #date = models.DateTimeField(auto_now_add=True)
     description =models.TextField(null=True, blank=True)
-   # participants = models.ManyToManyField(User)
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
 
@@ -26,7 +23,6 @@ class Room(models.Model):
         return self.name
 #THREAD COMMENTS
 class Message(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     user= models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField()

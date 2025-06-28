@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Room
+from .models import Room, Message
 from .forms import PostForm
 
 
@@ -12,7 +12,11 @@ def home(request):
 
 def room(request, pk):
    room=Room.objects.get(id=pk)
-   context = {'room':room}
+   comments = room.message_set.all().order_by('-created')
+   if request.method == 'POST':
+       message=Message.objects.create(user=request.user,room=room,body=request.POST.get('body'))
+       return redirect('base:room',pk=room.id)
+   context = {'room':room, 'comments':comments}
    return render(request, 'base/room.html', context)
 
 @login_required(login_url='usermanager:user-login')
@@ -53,4 +57,15 @@ def deletepost(request, pk):
       return redirect('base:home')
 
     return render(request, 'base/delete.html', {"obj":room})
+
+@login_required(login_url='usermanager:user-login')
+def deletecomment(request, pk):
+    comment = Message.objects.get(id=pk)
+
+    if request.method == 'POST':
+      comment.delete()
+      return redirect('base:home')
+
+    return render(request, 'base/delete.html', {"obj":comment})
+
 
