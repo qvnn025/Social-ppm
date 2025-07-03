@@ -7,27 +7,42 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+class TopicCount(models.Model):
+    user  = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic,on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+
 #POST THREAD
 class Room(models.Model):
     host = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.SET_NULL,null = True, related_name="posts")
     topic=models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200)
-    #date = models.DateTimeField(auto_now_add=True)
     description =models.TextField(null=True, blank=True)
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-updated', '-created']
+        permissions = [
+            ("can_delete_any_room", "Can delete any room")
+        ]
     def __str__(self):
         return self.name
 #THREAD COMMENTS
 class Message(models.Model):
     user= models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    deleted_by_moderator = models.BooleanField(default=False)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField()
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        permissions = [
+            ("can_delete_any_message", "Can delete any message")
+        ]
+
     def __str__(self):
+        if self.deleted_by_moderator:
+            return "[deleted]"
         return self.body[0:50]

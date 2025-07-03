@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm
-from base import urls
 
 User = get_user_model()
 
@@ -43,14 +42,13 @@ def registeruser(request):
     context={'page':page}
     return render(request, 'usermanager/user-login.html', {'form':form})
 
-def profilerender(request, username):
-    user = get_object_or_404(User, username=username)
-    rooms = user.posts.all()
+def profilerender(request, pk):
+    profile_user = get_object_or_404(User, pk=pk)
+    rooms = profile_user.posts.all()
     return render(request, "usermanager/user-profile.html", {
-        "user-profile": user,
+        "profile_user": profile_user,
         "rooms": rooms,
     })
-
 
 
 

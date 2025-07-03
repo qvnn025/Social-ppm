@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="post-container">
-<p>@{{room.host}}-OP</p>
+<p><a href="{% url 'usermanager:user-profile' room.host.id %}">@{{room.host}}</a>-OP</p>
 <h1>{{room.name}}</h1>
 <p>{{room.description}}</p>
 
@@ -14,14 +14,22 @@
    <hr>
   {% for message in comments %}
    <div>
-      <small>@{{message.user}} {{message.created|timesince}} ago</small>
+      <small><a href="{% url 'usermanager:user-profile' message.user.id %}">"@{{message.user}}</a> {{message.created|timesince}} ago</small>
       {% if message.user == room.host %}
       <p>OP</p>
       {% endif %}
-       {% if request.user == message.user %}
+
+       {% if message.deleted_by_moderator %}
+      <p class="deleted-placeholder">
+        [Removed by moderator]
+      </p>
+      {% else %}
+      <p>{{ message.body }}</p>
+       {% endif %}
+
+       {% if request.user == message.user or perms.base.delete_message %}
        <a href="{% url 'base:delete-comment' message.id %}">Delete</a>
        {% endif %}
-      <p>{{message.body}}</p>
    </div>
    {% endfor %}
 
