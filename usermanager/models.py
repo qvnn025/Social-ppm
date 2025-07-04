@@ -1,6 +1,18 @@
 from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
 from django.db import models
+from django import forms
+from django.contrib.auth.models import User
 
+class Profile(models.Model):
+    user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    email=models.EmailField(unique=True)
+    bio=models.TextField(blank=True)
+
+class UserRegistrationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model  = User
+        fields = ('username','email','password1','password2')
 
 class FriendRequest(models.Model):
     STATUS_CHOICES = [
@@ -34,8 +46,16 @@ class FriendRequest(models.Model):
         self.save()
 
 class Friendlist(models.Model):
-    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    to_user   = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    from_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='friendlists_sent'
+    )
+    to_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='friendlists_received'
+    )
     created   = models.DateTimeField(auto_now_add=True)
 
     class Meta:

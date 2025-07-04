@@ -20,7 +20,22 @@ def home(request):
         )
         .order_by('-recent_comments', '-updated')
     )
-    return render(request, 'base/home.html', {'rooms': rooms})
+    if request.user.is_authenticated:
+      top_topics = (
+         TopicCount.objects
+         .filter(user=request.user)
+         .order_by('-score')
+         .values_list('topic', flat=True)[:3]
+      )
+      for_you_rooms = (
+         Room.objects
+         .filter(topic__in=top_topics)
+         .order_by('-updated')[:10]
+      )
+    else:
+        for_you_rooms = []
+
+    return render(request, 'base/home.html', {'rooms': rooms, 'for_you_rooms': for_you_rooms})
 
 def room(request, pk):
    room = get_object_or_404(Room, pk=pk)
@@ -44,7 +59,9 @@ def createpost(request):
     if request.method == 'POST':
        form = PostForm(request.POST)
        if form.is_valid():
-              form.save()
+              room= form.save(commit=False)
+              room.host= request.user
+              room.save()
               return redirect('base:home')
 
     context={"form":form}
@@ -100,6 +117,6 @@ def foryoufeed(request):
         .filter(topic__in=top_topics)
         .order_by("-updated")[:50]
     )
-    return render(request, "base/for_you.html", {"rooms": rooms})
+    return render(request, "base/home.html", {"rooms": rooms})
 
 

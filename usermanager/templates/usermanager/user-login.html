@@ -7,25 +7,37 @@
 {% block content %}
   {% if page == 'login' %}
     <div>
-      <form method="POST" action="">
-        {% csrf_token %}
-        <label>Username:</label>
-        <input type="text" name="username" placeholder="Enter Username"/>
-
-        <label>Password:</label>
-        <input type="password" name="password" placeholder="Enter Password"/>
-
-        <input type="submit" value="Login"/>
+       <form method="post">
+       {% csrf_token %}
+       {{ form.non_field_errors }}
+      <label>Username or email:</label>
+       <input type="text" name="identifier" placeholder="Enter username or email"/>
+       <label>Password:</label>
+       <input type="text" name="password" placeholder="Enter password"/>
+       <button type="submit" value="Login">Log in</button>
       </form>
       <a href="{% url 'usermanager:user-register' %}">Sign up</a>
     </div>
   {% else %}
     <div>
-      <form method="POST" action="">
+     <form method="post" action="">
         {% csrf_token %}
-         {{form.as_p}}
-        <input type="submit" value="Register"/>
-      </form>
+        {{ form.username.label_tag }} {{ form.username }}
+        {{ form.email.label_tag }}    {{ form.email }}
+       {{ form.password1.label_tag }} {{ form.password1 }}
+        {{ form.password2.label_tag }} {{ form.password2 }}
+        <button type="submit" value="Register">Register</button>
+     </form>
+      {% if form.errors %}
+      <div class="errors">
+      {{ form.non_field_errors }}
+       {% for field in form %}
+        {% for err in field.errors %}
+          <p>{{ field.label }}: {{ err }}</p>
+        {% endfor %}
+      {% endfor %}
+      </div>
+      {% endif %}
       <p>Already have an account?</p>
       <a href="{% url 'usermanager:user-login' %}">Log in</a>
     </div>

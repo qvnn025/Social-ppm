@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="comments and post functionality">
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="user app and friendlist">
+      <change afterPath="$PROJECT_DIR$/usermanager/backends.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usermanager/templates/usermanager/email-prompt.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/templates/base/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/base/templates/base/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/templates/base/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/base/templates/base/room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usermanager/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usermanager/templates/usermanager/user-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/templates/usermanager/user-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usermanager/templates/usermanager/user-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/templates/usermanager/user-login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usermanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usermanager/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/views.py" afterDir="false" />
     </list>
@@ -124,6 +126,7 @@
       <workItem from="1749915218232" duration="19000" />
       <workItem from="1751367313314" duration="4185000" />
       <workItem from="1751447621953" duration="1331000" />
+      <workItem from="1751576157459" duration="4309000" />
     </task>
     <task id="LOCAL-00001" summary="user authentication+post functionality">
       <option name="closed" value="true" />
@@ -141,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751137711569</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="user app and friendlist">
+      <option name="closed" value="true" />
+      <created>1751557045444</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1751557045444</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +172,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user authentication+post functionality" />
     <MESSAGE value="comments and post functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="comments and post functionality" />
+    <MESSAGE value="user app and friendlist" />
+    <option name="LAST_COMMIT_MESSAGE" value="user app and friendlist" />
   </component>
 </project>

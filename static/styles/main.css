@@ -7,3 +7,12 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
 }
+
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+
+}

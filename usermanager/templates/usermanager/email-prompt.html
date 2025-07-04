@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block title %}
+  {% if page == 'login' %}Missingmail – Forum{% else %}Register – Forum{% endif %}
+{% endblock %}
+
+{% block content %}
+<div>
+  <p>Uh oh, Seems like your profile doesn't have an e-mail.</p>
+      <form method="POST" action="">
+        {% csrf_token %}
+       <label>Add email:</label>
+       <input type="text" name="email" placeholder="Enter email"/>
+      </form>
+</div>
+{% endblock %}

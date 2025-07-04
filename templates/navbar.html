@@ -9,12 +9,18 @@
   <h1>funny logo</h1>
 </a>
 <hr>
+<div>
 {% if request.user.is_authenticated %}
 <p>Welcome back, {{request.user}}!</p>
 <a href="{% url 'usermanager:user-logout' %}">Logout</a>
 {% else %}
 <a href="{% url 'usermanager:user-login' %}">Login</a>
 {% endif %}
-
+</div>
+{% if request.user.is_authenticated %}
+<div>
+    <a href="{% url 'usermanager:user-profile' request.user.id %}">{{request.user.username}}</a>
+</div>
+{% endif %}
 </body>
 </html>
