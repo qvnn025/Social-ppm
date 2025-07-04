@@ -7,6 +7,20 @@
 <div>
 <h1>Profile: {{ profile_user.username }}</h1>
 <p>Joined on {{ profile_user.date_joined|date:"F j, Y" }}</p>
+<p><strong>Followers:</strong> {{ followers_count }}</p>
+{% if can_send_request %}
+  <a href="{% url 'usermanager:send-req' profile_user.id %}">
+    Send Request
+  </a>
+{% elif pending_request %}
+  <p>Pending request</p>
+{% elif is_following %}
+  <p>Following</p>
+{% elif rejected_request %}
+  <a href="{% url 'usermanager:send-req' profile_user.id %}">
+    Send Request
+  </a>
+{% endif %}
 </div>
 <div>
 <h2>Posts by {{ profile_user.username }}</h2>

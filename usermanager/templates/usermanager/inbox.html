@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block title %}Inbox – Forum{% endblock title %}
+
+{% block content %}
+<h1>Notifications</h1>
+<ul>
+  {% for n in notifs %}
+    <li>
+      {% if n.notif_type == 'friend_request' %}
+        <strong>{{ n.from_user.username }}</strong> sent you a friend request
+        <a href="{% url 'usermanager:respond-req'  n.id 'accept' %}">Accept</a>
+        <a href="{% url 'usermanager:respond-req'  n.id 'reject' %}">Reject</a>
+      {% elif n.notif_type == 'friend_accept' %}
+        <strong>{{ n.from_user.username }}</strong> accepted your friend request
+      {% endif %}
+      <small>{{ n.created|timesince }} ago</small>
+    </li>
+  {% empty %}
+    <li>No notifications.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

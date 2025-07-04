@@ -18,6 +18,11 @@
 {% endif %}
 </div>
 {% if request.user.is_authenticated %}
+  <a href="{% url 'usermanager:inbox' %}">
+    Notifications{% if unread_notifs %} ({{ unread_notifs }}){% endif %}
+  </a>
+{% endif %}
+{% if request.user.is_authenticated %}
 <div>
     <a href="{% url 'usermanager:user-profile' request.user.id %}">{{request.user.username}}</a>
 </div>

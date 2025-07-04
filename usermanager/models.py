@@ -14,6 +14,32 @@ class UserRegistrationForm(UserCreationForm):
         model  = User
         fields = ('username','email','password1','password2')
 
+
+class Notification(models.Model):
+    NOTIF_TYPES = [
+        ('friend_request', 'Friend Request'),
+        ('friend_accept',  'Friend Request Accepted'),
+        # TODO ADD LIKES AND COMMENTS
+    ]
+
+    to_user    = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='notifications',
+        on_delete=models.CASCADE
+    )
+    from_user  = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='+',
+        on_delete=models.CASCADE
+    )
+    notif_type = models.CharField(max_length=20, choices=NOTIF_TYPES)
+    created    = models.DateTimeField(auto_now_add=True)
+    is_read    = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-created']
+
+
 class FriendRequest(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
