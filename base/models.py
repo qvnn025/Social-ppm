@@ -8,7 +8,7 @@ class Topic(models.Model):
         return self.name
 
 class TopicCount(models.Model):
-    user  = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    user= models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic,on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
 

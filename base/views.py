@@ -1,6 +1,5 @@
 from datetime import timedelta
 from itertools import chain
-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -13,7 +12,6 @@ from django.utils import timezone
 def home(request):
     since = timezone.now() - timedelta(hours=24)
 
-    # 1) Trending rooms
     rooms = (
         Room.objects
         .annotate(
@@ -25,33 +23,15 @@ def home(request):
         .order_by('-recent_comments', '-updated')
     )
 
-    # 2) Trending shares
     shares = Share.objects.select_related('original', 'user') \
                           .order_by('-created')
-
-    # 3) Merge & sort by timestamp (we pretend .created == .updated on Rooms)
     def timestamp(item):
         return getattr(item, 'created', item.updated)
 
-    feed_items = sorted(
-        chain(rooms, shares),
-        key=timestamp,
-        reverse=True
-    )
-
-    # 4) Your “For You” rooms stays the same
+    feed_items = sorted(chain(rooms, shares), key=timestamp,reverse=True)
     if request.user.is_authenticated:
-        top_topics = (
-            TopicCount.objects
-            .filter(user=request.user)
-            .order_by('-score')
-            .values_list('topic', flat=True)[:3]
-        )
-        for_you_rooms = (
-            Room.objects
-            .filter(topic__in=top_topics)
-            .order_by('-updated')[:10]
-        )
+        top_topics = ( TopicCount.objects.filter(user=request.user).order_by('-score').values_list('topic', flat=True)[:3])
+        for_you_rooms = (Room.objects.filter(topic__in=top_topics).order_by('-updated')[:10])
     else:
         for_you_rooms = []
 
@@ -63,9 +43,7 @@ def home(request):
 def room(request, pk):
    room = get_object_or_404(Room, pk=pk)
    #TOPIC PREFERENCE COUNT
-   affinity, _ = TopicCount.objects.get_or_create(
-       user=request.user, topic=room.topic
-   )
+   affinity, _ = TopicCount.objects.get_or_create(user=request.user, topic=room.topic)
    affinity.score += 1
    affinity.save()
    comments = room.message_set.all().order_by('-created')
@@ -148,17 +126,8 @@ def deletecomment(request, pk):
     return render(request, 'base/delete.html', {"obj":comment})
 
 def foryoufeed(request):
-    top_topics = (
-        TopicCount.objects
-        .filter(user=request.user)
-        .order_by("-score")
-        .values_list("topic", flat=True)[:3]
-    )
-    rooms = (
-        Room.objects
-        .filter(topic__in=top_topics)
-        .order_by("-updated")[:50]
-    )
+    top_topics = (TopicCount.objects.filter(user=request.user).order_by("-score").values_list("topic", flat=True)[:3])
+    rooms = (Room.objects .filter(topic__in=top_topics).order_by("-updated")[:50])
     return render(request, "base/home.html", {"rooms": rooms})
 
 
