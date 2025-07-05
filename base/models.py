@@ -18,11 +18,15 @@ class Room(models.Model):
     topic=models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200)
     description =models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='room_images/', blank=True,null=True)
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_rooms',blank=True)
+
 
     class Meta:
         ordering = ['-updated', '-created']
+        #MOD PERMS
         permissions = [
             ("can_delete_any_room", "Can delete any room")
         ]
@@ -36,7 +40,8 @@ class Message(models.Model):
     body = models.TextField()
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
-
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='liked_comments', blank=True)
+    #MOD PERMS
     class Meta:
         permissions = [
             ("can_delete_any_message", "Can delete any message")
@@ -46,3 +51,15 @@ class Message(models.Model):
         if self.deleted_by_moderator:
             return "[deleted]"
         return self.body[0:50]
+
+#post share
+class Share(models.Model):
+    user= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    original= models.ForeignKey(Room, on_delete=models.CASCADE, related_name='shares')
+    caption= models.TextField(blank=True)
+    updated = models.DateTimeField(auto_now=True)
+    image= models.ImageField(upload_to='shares/', blank=True, null=True)
+    created= models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']

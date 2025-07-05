@@ -4,9 +4,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login , logout
 
-
-
-from usermanager.models import UserRegistrationForm, FriendRequest, Notification
+from base.forms import PfpForm
+from usermanager.models import UserRegistrationForm, FriendRequest, Notification, Profile
 
 User = get_user_model()
 
@@ -64,12 +63,7 @@ def registeruser(request):
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
-
-            user = authenticate(
-                request,
-                username=user.username,
-                password=form.cleaned_data['password1']
-            )
+            user = authenticate(request,username=user.username,password=form.cleaned_data['password1'])
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('base:home')
 
@@ -89,10 +83,8 @@ def profilerender(request, pk):
     is_owner = request.user.is_authenticated and request.user == profile_user
 
 
-    fr_qs = FriendRequest.objects.filter(
-        from_user=request.user,
-        to_user=profile_user
-    ) if request.user.is_authenticated and not is_owner else FriendRequest.objects.none()
+    fr_qs = FriendRequest.objects.filter(from_user=request.user,to_user=profile_user) \
+        if request.user.is_authenticated and not is_owner else FriendRequest.objects.none()
 
     pending_request  = fr_qs.filter(status='pending').exists()
     is_following     = fr_qs.filter(status='accepted').exists()
@@ -101,10 +93,7 @@ def profilerender(request, pk):
     can_send_request = request.user.is_authenticated and not is_owner \
                        and not (pending_request or is_following)
 
-    followers_count = FriendRequest.objects.filter(
-        to_user=profile_user,
-        status='accepted'
-    ).count()
+    followers_count = FriendRequest.objects.filter(to_user=profile_user,status='accepted').count()
 
     return render(request, "usermanager/user-profile.html", {
         "profile_user":     profile_user,
@@ -116,6 +105,14 @@ def profilerender(request, pk):
         "rejected_request": rejected_request,
     })
 
+def edit_profile(request):
+    profile, _ = Profile.objects.get_or_create(user=request.user)
+    form = PfpForm(request.POST or None, request.FILES or None, instance=profile)
+    if form.is_valid():
+        form.save()
+        return redirect('usermanager:user-profile', pk=request.user.id)
+    return render(request, 'usermanager/edit-profile.html', {'form': form})
+
 
 def sendreq(request, pk):
     to_user = get_object_or_404(User, pk=pk)
@@ -124,43 +121,25 @@ def sendreq(request, pk):
         messages.error(request, "You can’t friend yourself.")
         return redirect('usermanager:user-profile', pk=pk)
 
-    # Try to fetch an existing FriendRequest (if any)
-    fr = FriendRequest.objects.filter(
-        from_user=request.user,
-        to_user=to_user
-    ).first()
+    fr = FriendRequest.objects.filter(from_user=request.user,to_user=to_user).first()
 
     if fr is None:
-        # No request at all → create pending
-        fr = FriendRequest.objects.create(
-            from_user=request.user,
-            to_user=to_user
-        )
-        Notification.objects.create(
-            to_user=to_user,
-            from_user=request.user,
-            notif_type='friend_request'
-        )
+        fr = FriendRequest.objects.create(from_user=request.user,to_user=to_user)
+        Notification.objects.create(to_user=to_user,from_user=request.user,notif_type='friend_request')
         messages.success(request, "Friend request sent!")
 
     elif fr.status == 'rejected':
-        # Was rejected before → reset to pending
         fr.status = 'pending'
         fr.save()
-        # Re-notify
-        Notification.objects.create(
-            to_user=to_user,
-            from_user=request.user,
-            notif_type='friend_request'
-        )
+        Notification.objects.create(to_user=to_user,from_user=request.user,notif_type='friend_request')
         messages.success(request, "Friend request sent!")
 
     elif fr.status == 'pending':
-        # Already pending
+        #pending guard
         messages.info(request, "Your friend request is still pending.")
 
     elif fr.status == 'accepted':
-        # Already friends
+        #accepted guard
         messages.info(request, "You’re already friends.")
 
     return redirect('usermanager:user-profile', pk=pk)
@@ -168,42 +147,19 @@ def sendreq(request, pk):
 #notif inbox
 @login_required(login_url='usermanager:user-login')
 def notifbox(request):
-    notifs = Notification.objects.filter(
-        to_user=request.user,
-        notif_type='friend_request',
-        is_read=False
-    )
+    notifs = Notification.objects.filter(to_user=request.user,notif_type='friend_request',is_read=False)
     return render(request, 'usermanager/inbox.html', {'notifs': notifs})
 
 @login_required(login_url='usermanager:user-login')
 def respondreq(request, notif_id, action):
-    # 1) Fetch the Notification, ensure it’s a pending friend_request
-    notif = get_object_or_404(
-        Notification,
-        pk=notif_id,
-        to_user=request.user,
-        notif_type='friend_request',
-        is_read=False
-    )
-
-    # 2) Find the matching FriendRequest
+    notif = get_object_or_404(Notification,pk=notif_id,to_user=request.user,notif_type='friend_request',is_read=False)
     fr = get_object_or_404(
-        FriendRequest,
-        from_user=notif.from_user,
-        to_user=request.user,
-        status='pending'
-    )
-
-    # 3) Handle accept/reject as before…
+ FriendRequest,from_user=notif.from_user,to_user=request.user,status='pending')
     if action == 'accept':
         fr.accept()
         notif.is_read = True
         notif.save()
-        Notification.objects.create(
-            to_user=fr.from_user,
-            from_user=request.user,
-            notif_type='friend_accept'
-        )
+        Notification.objects.create(to_user=fr.from_user,from_user=request.user,notif_type='friend_accept')
         messages.success(request, "You’re now friends!")
     elif action == 'reject':
         fr.reject()

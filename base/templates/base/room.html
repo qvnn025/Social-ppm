@@ -7,7 +7,26 @@
 <div class="post-container">
 <p><a href="{% url 'usermanager:user-profile' room.host.id %}">@{{room.host}}</a>-OP</p>
 <h1>{{room.name}}</h1>
+  {% if room.image %}
+    <img src="{{ room.image.url }}" alt="{{ room.name }}">
+  {% endif %}
 <p>{{room.description}}</p>
+<form method="post" action="{% url 'base:room-like' room.id %}">
+  {% csrf_token %}
+  <button type="submit">
+    {% if request.user in room.likes.all %}
+      ❤️
+    {% else %}
+      🤍
+    {% endif %}
+    {{ room.likes.count }}
+  </button>
+</form>
+<a class="btn btn-secondary"
+     href="{% url 'base:share-room' room.id %}">
+    🔁 Share
+  </a>
+
 
 <div class="comment-wrapper">
    <h3>Comments</h3>
@@ -25,6 +44,17 @@
       </p>
       {% else %}
       <p>{{ message.body }}</p>
+       <form method="post" action="{% url 'base:message-like' message.id %}">
+       {% csrf_token %}
+        <button type="submit">
+         {% if request.user in message.likes.all %}
+         ❤️
+         {% else %}
+         🤍
+        {% endif %}
+        {{ msg.likes.count }}
+        </button>
+       </form>
        {% endif %}
 
        {% if request.user == message.user or perms.base.delete_message %}

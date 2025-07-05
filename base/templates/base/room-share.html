@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block content %}
+  <h2>Share: {{ original.name }}</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.caption.label_tag }}<br>
+    {{ form.caption }}<br><br>
+
+    {{ form.image.label_tag }}<br>
+    {{ form.image }}<br><br>
+
+    <button type="submit">Share</button>
+  </form>
+{% endblock %}

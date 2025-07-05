@@ -6,26 +6,51 @@
 {% block content %}
   <h1>hey!! :D</h1>
   <div class="home-container">
-    <div>
-    <a href="{% url 'base:create-post' %}">What's on your mind?</a>
-    <hr>
-     <div>
-    {% for room in rooms %}
-      <div>
-        {% if request.user == room.host or perms.base.delete_room %}
-        <a href="{% url 'base:update-post' room.id %}">Edit</a>
-        <a href="{% url 'base:delete-post' room.id %}">Delete</a>
-        {% endif %}
-        <a href="{% url 'usermanager:user-profile' room.host.id %}">{{ room.host.username }}</a>
-        <h5><a href="{% url 'base:room' room.id %}">{{ room.name }}</a></h5>
-        <small>{{ room.topic.name }}</small>
-        <hr>
-      </div>
-    {% endfor %}
-     </div>
+    <div class="main-feed">
+      <a href="{% url 'base:create-post' %}">What's on your mind?</a>
+      <hr>
+
+      {% for item in feed_items %}
+        <div class="feed-item">
+          {% if item.original %}
+            <p><strong>{{ item.user.username }}</strong> shared:</p>
+            <div class="shared-block">
+              <a href="{% url 'base:room' item.original.id %}">
+                {{ item.original.name }}
+              </a>
+              <small>by {{ item.original.host.username }}</small>
+            </div>
+            {% if item.caption %}
+              <blockquote>{{ item.caption }}</blockquote>
+            {% endif %}
+            {% if item.image %}
+              <img src="{{ item.image.url }}" alt="Share image">
+            {% endif %}
+
+          {% else %}
+            {# render a normal Room post #}
+            {% if request.user == item.host or perms.base.delete_room %}
+              <a href="{% url 'base:update-post' item.id %}">Edit</a>
+              <a href="{% url 'base:delete-post' item.id %}">Delete</a>
+            {% endif %}
+
+            <a href="{% url 'usermanager:user-profile' item.host.id %}">
+              {{ item.host.username }}
+            </a>
+            <h5>
+              <a href="{% url 'base:room' item.id %}">{{ item.name }}</a>
+            </h5>
+            <small>{{ item.topic.name }}</small>
+          {% endif %}
+
+          <hr>
+        </div>
+      {% empty %}
+        <p>No posts or shares to display.</p>
+      {% endfor %}
     </div>
 
-    <div class="for-you-sidebar">
+ <div class="for-you-sidebar">
       {% if request.user.is_authenticated %}
         <h2>For You</h2>
         {% for room in for_you_rooms %}
@@ -38,6 +63,5 @@
         {% endfor %}
       {% endif %}
     </div>
-
   </div>
 {% endblock content %}

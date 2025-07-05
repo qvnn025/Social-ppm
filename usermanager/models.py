@@ -3,11 +3,20 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import models
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class Profile(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     email=models.EmailField(unique=True)
     bio=models.TextField(blank=True)
+    pfp = models.ImageField(upload_to='pfps/',blank=True,null=True)
+
+    @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
 class UserRegistrationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -19,22 +28,25 @@ class Notification(models.Model):
     NOTIF_TYPES = [
         ('friend_request', 'Friend Request'),
         ('friend_accept',  'Friend Request Accepted'),
-        # TODO ADD LIKES AND COMMENTS
+        ('post_like', 'Post Like'),
+        ('comment_like', 'Comment Like'),
+        ('post_comment', 'Post Comment'),
+        ('post_share', 'Post Share'),
     ]
 
-    to_user    = models.ForeignKey(
+    to_user= models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='notifications',
         on_delete=models.CASCADE
     )
-    from_user  = models.ForeignKey(
+    from_user= models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='+',
         on_delete=models.CASCADE
     )
-    notif_type = models.CharField(max_length=20, choices=NOTIF_TYPES)
-    created    = models.DateTimeField(auto_now_add=True)
-    is_read    = models.BooleanField(default=False)
+    notif_type =models.CharField(max_length=20, choices=NOTIF_TYPES)
+    created= models.DateTimeField(auto_now_add=True)
+    is_read= models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created']
@@ -47,16 +59,8 @@ class FriendRequest(models.Model):
         ('rejected', 'Rejected'),
     ]
 
-    from_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='sent_requests',
-        on_delete=models.CASCADE
-    )
-    to_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='received_requests',
-        on_delete=models.CASCADE
-    )
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='sent_requests',on_delete=models.CASCADE)
+    to_user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='received_requests',on_delete=models.CASCADE)
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, default='pending')
     created = models.DateTimeField(auto_now_add=True)
 
@@ -72,17 +76,9 @@ class FriendRequest(models.Model):
         self.save()
 
 class Friendlist(models.Model):
-    from_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='friendlists_sent'
-    )
-    to_user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='friendlists_received'
-    )
-    created   = models.DateTimeField(auto_now_add=True)
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='friendlists_sent')
+    to_user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='friendlists_received')
+    created= models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = [('from_user', 'to_user')]
