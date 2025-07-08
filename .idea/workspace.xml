@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix9">
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix12">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
     </list>
@@ -50,28 +50,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.home.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.main.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.Django Dev.executor&quot;: &quot;Run&quot;,
-    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Serena_backup/PycharmProjects/User_project/manage.py&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.home.html.executor": "Run",
+    "JavaScript Debug.main.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.Django Dev.executor": "Run",
+    "Python.urls.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Serena_backup/PycharmProjects/User_project/manage.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Serena_backup\PycharmProjects\User_project" />
@@ -341,7 +342,31 @@
       <option name="project" value="LOCAL" />
       <updated>1752006673294</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix10">
+      <option name="closed" value="true" />
+      <created>1752007329396</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1752007329396</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fix11">
+      <option name="closed" value="true" />
+      <created>1752007374958</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1752007374958</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fix12">
+      <option name="closed" value="true" />
+      <created>1752007663991</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1752007663991</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,6 +404,9 @@
     <MESSAGE value="fix7" />
     <MESSAGE value="fix8" />
     <MESSAGE value="fix9" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix9" />
+    <MESSAGE value="fix10" />
+    <MESSAGE value="fix11" />
+    <MESSAGE value="fix12" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix12" />
   </component>
 </project>

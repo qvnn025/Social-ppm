@@ -15,7 +15,6 @@ import dj_database_url
 from environ import Env
 ENVIRONMENT="production"
 
-
 from django.conf.global_settings import STATICFILES_DIRS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 env = Env()
-# load the .env file living at BASE_DIR/.env
+
 env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-SECRET_KEY = env("SECRET_KEY")  # now your quoted key—including all the hashes—will be picked up
+SECRET_KEY = env("SECRET_KEY")
 
 if ENVIRONMENT == "development":
    DEBUG = True
