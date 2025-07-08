@@ -89,28 +89,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'User_project.wsgi.application'
 
-DB_LIVE=os.getenv('DB_LIVE')
+DB =os.environ.get('DB_LIVE')
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-if DB_LIVE in ["False", False]:
-    DATABASES = {
-        'default': {
-          'ENGINE': 'django.db.backends.sqlite3',
-           'NAME': BASE_DIR / 'db.sqlite3',
-      }
-    }
-
-else:
+if DB in ["False", False]:
   DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-         'USER': os.getenv('DB_USER'),
-         'PASSWORD':os.getenv('DB_PASSWORD'),
-         'HOST':os.getenv('DB_HOST'),
-         'PORT': os.getenv('DB_PORT'),
+        'NAME': os.environ.get('DB_NAME'),
+         'USER': os.environ.get('DB_USER'),
+         'PASSWORD':os.environ.get('DB_PASSWORD'),
+         'HOST':os.environ.get('DB_HOST'),
+         'PORT': os.environ.get('DB_PORT'),
     }
   }
 

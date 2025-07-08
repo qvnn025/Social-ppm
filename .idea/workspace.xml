@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="deployment start">
-      <change afterPath="$PROJECT_DIR$/static/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/logo2.png" afterDir="false" />
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="icons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +156,7 @@
       <workItem from="1751879791004" duration="7115000" />
       <workItem from="1751889392613" duration="6365000" />
       <workItem from="1751974166295" duration="6369000" />
-      <workItem from="1751989594789" duration="720000" />
+      <workItem from="1751989594789" duration="1113000" />
     </task>
     <task id="LOCAL-00001" summary="user authentication+post functionality">
       <option name="closed" value="true" />
@@ -251,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751988885685</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="icons">
+      <option name="closed" value="true" />
+      <created>1751990493943</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1751990493943</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +282,7 @@
     <MESSAGE value="final notif engine and fixes+ban feature for mods" />
     <MESSAGE value="pre-deployment back-up" />
     <MESSAGE value="deployment start" />
-    <option name="LAST_COMMIT_MESSAGE" value="deployment start" />
+    <MESSAGE value="icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="icons" />
   </component>
 </project>
