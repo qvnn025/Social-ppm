@@ -40,9 +40,30 @@ body{
 }
 
 .logo{
-
-
+max-width: 50px;
+max-height: 50px;
 }
+.logo_big {
+  display: inline-block;
+  max-width: 200px;
+  max-height: 150px;
+}
+
+.logo_big img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.title {
+  font-size: 1.5em;
+  color: #fff;
+  margin: 0;
+}
+.icon-left {
+  display: flex;
+  align-items: center;
+}
+
 
 a {
   color: #dfe3e4;
@@ -65,9 +86,6 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
-.edit_btn{
-
-}
 .post-tag {
   display: inline-block;
   margin-top: 0.25rem;

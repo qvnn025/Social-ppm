@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="pre-deployment back-up">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="deployment start">
+      <change afterPath="$PROJECT_DIR$/static/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/qvnn025/Social-ppm&quot;,
-    &quot;accountId&quot;: &quot;6f641dbe-5972-44e4-8345-6930c78d77ad&quot;
+    &quot;accountId&quot;: &quot;ba1909db-b290-40b3-9fce-d00e8db49df6&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -69,6 +72,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Serena_backup\PycharmProjects\User_project" />
       <recent name="C:\Users\Serena_backup\PycharmProjects\User_project\static\images" />
       <recent name="C:\Users\Serena_backup\PycharmProjects\User_project\usermanager\templates\usermanager" />
       <recent name="C:\Users\Serena_backup\PycharmProjects\User_project\base\templates\base" />
@@ -129,7 +133,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-880ecab49056-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.122" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-WS-243.24978.60" />
       </set>
     </attachedChunks>
   </component>
@@ -157,6 +161,7 @@
       <workItem from="1751879791004" duration="7115000" />
       <workItem from="1751889392613" duration="6365000" />
       <workItem from="1751974166295" duration="6369000" />
+      <workItem from="1751989594789" duration="720000" />
     </task>
     <task id="LOCAL-00001" summary="user authentication+post functionality">
       <option name="closed" value="true" />
@@ -230,7 +235,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751985861107</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="deployment start">
+      <option name="closed" value="true" />
+      <created>1751988782539</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1751988782539</updated>
+    </task>
+    <task id="LOCAL-00011" summary="deployment start">
+      <option name="closed" value="true" />
+      <created>1751988885685</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1751988885685</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +278,7 @@
     <MESSAGE value="format fixes" />
     <MESSAGE value="final notif engine and fixes+ban feature for mods" />
     <MESSAGE value="pre-deployment back-up" />
-    <option name="LAST_COMMIT_MESSAGE" value="pre-deployment back-up" />
+    <MESSAGE value="deployment start" />
+    <option name="LAST_COMMIT_MESSAGE" value="deployment start" />
   </component>
 </project>
