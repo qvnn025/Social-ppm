@@ -11,32 +11,34 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
-
+import dj_database_url
+from environ import Env
+ENVIRONMENT="production"
 
 from django.conf.global_settings import STATICFILES_DIRS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#cloudinary imports
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fo1_z2#(hqfysh^225=38j2ad#qp(ri&3-p3vd0pp*vovy2d#n'
+env = Env()
+# load the .env file living at BASE_DIR/.env
+env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = env("SECRET_KEY")  # now your quoted key—including all the hashes—will be picked up
 
-ALLOWED_HOSTS = ["*"]
+if ENVIRONMENT == "development":
+   DEBUG = True
+else:
+   DEBUG = False
 
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'web-production-b59ae.up.railway.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://web-production-b59ae.up.railway.app']
 
 # Application definition
 
@@ -50,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usermanager.apps.UsermanagerConfig',
     'base.apps.BaseConfig',
-    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -89,22 +90,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'User_project.wsgi.application'
 
-DB =os.environ.get('DB_LIVE')
-
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-if DB in ["False", False]:
-  DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-         'USER': os.environ.get('DB_USER'),
-         'PASSWORD':os.environ.get('DB_PASSWORD'),
-         'HOST':os.environ.get('DB_HOST'),
-         'PORT': os.environ.get('DB_PORT'),
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
     }
-  }
+}
+POSTGRES_LOCALLY= True
+if ENVIRONMENT == "production" or POSTGRES_LOCALLY:
+ DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -163,9 +160,3 @@ MEDIA_URL  = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-#cloudinary-django integration
-cloudinary.config(
-    cloud_name="dwlilunbx",
-    api_key="622827262491734",
-    api_secret="2tiVZFcI7h3qf-a-L06WThyMblE",
-)
