@@ -9,10 +9,23 @@
     <li>
       {% if n.notif_type == 'friend_request' %}
         <strong>{{ n.from_user.username }}</strong> sent you a friend request
-        <a href="{% url 'usermanager:respond-req'  n.id 'accept' %}">Accept</a>
-        <a href="{% url 'usermanager:respond-req'  n.id 'reject' %}">Reject</a>
-      {% elif n.notif_type == 'friend_accept' %}
-        <strong>{{ n.from_user.username }}</strong> accepted your friend request
+          <a href="{% url 'usermanager:respond-req' n.id 'accept' %}">Accept</a>
+          <a href="{% url 'usermanager:respond-req' n.id 'reject' %}">Reject</a>
+      {% else %}
+        {# for all others, link to n.target.get_absolute_url #}
+        {% if n.notif_type == 'friend_accept' %}
+          <strong>{{ n.from_user.username }}</strong> started following you
+        {% elif n.notif_type == 'post_like' %}
+          <strong>{{ n.from_user.username }}</strong> liked your post
+        {% elif n.notif_type == 'comment_like' %}
+          <strong>{{ n.from_user.username }}</strong> liked your comment
+        {% elif n.notif_type == 'post_comment' %}
+          <strong>{{ n.from_user.username }}</strong> commented on your post
+        {% elif n.notif_type == 'post_share' %}
+          <strong>{{ n.from_user.username }}</strong> shared your post
+        {% endif %}
+
+        <a href="{{ n.target.get_absolute_url }}">View</a>
       {% endif %}
       <small>{{ n.created|timesince }} ago</small>
     </li>

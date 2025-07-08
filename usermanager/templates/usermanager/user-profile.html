@@ -7,11 +7,24 @@
 <div class="profile-container">
 <div>
 <h1>{{ profile_user.username }}</h1>
-   {% if profile_user.profile.pfp %}
-   <img src="{{ profile_user.profile.pfp.url }}" alt="{{ profile_user.username }}’s pfp">
-   {% else %}
-   <img src="{% static 'images/default-pfp.png' %}" alt="Default pfp">
-   {% endif %}
+  {% if profile.pfp %}
+  <img
+    src="{{ profile.pfp.url }}"
+    alt="{{ profile_user.username }}’s avatar"
+    class="rounded-circle"
+    width="128"
+    height="128"
+  />
+{% else %}
+  {# fallback avatar #}
+  <img
+    src="{% static 'images/default-pfp.png' %}"
+    alt="Default avatar"
+    class="rounded-circle"
+    width="128"
+    height="128"
+  />
+{% endif %}
 <p>Joined on {{ profile_user.date_joined|date:"F j, Y" }}</p>
 <p><strong>Followers:</strong> {{ followers_count }}</p>
 {% if can_send_request %}
@@ -26,6 +39,25 @@
   <a href="{% url 'usermanager:send-req' profile_user.id %}">
     Send Request
   </a>
+{% endif %}
+    {% if perms.usermanager.can_ban_user and not user.is_superuser %}
+  {% if user.is_active %}
+    <a
+      href="{% url 'usermanager:ban' user.id %}"
+      class="btn btn-danger"
+      onclick="return confirm('Ban this user?');"
+    >
+      Ban user
+    </a>
+  {% else %}
+    <a
+      href="{% url 'usermanager:ban' user.id %}"
+      class="btn btn-success"
+      onclick="return confirm('Unban this user?');"
+    >
+      Unban user
+    </a>
+  {% endif %}
 {% endif %}
 </div>
 <div>

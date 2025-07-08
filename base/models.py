@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 #POST TOPIC (tags)
 class Topic(models.Model):
@@ -22,6 +23,9 @@ class Room(models.Model):
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_rooms',blank=True)
+    #link for notif
+    def get_absolute_url(self):
+        return reverse('base:room', args=[self.pk])
 
 
     class Meta:
@@ -41,6 +45,9 @@ class Message(models.Model):
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='liked_comments', blank=True)
+    def get_absolute_url(self):
+        url = reverse('base:room', args=[self.room.pk])
+        return f"{url}#comment-{self.pk}"
     #MOD PERMS
     class Meta:
         permissions = [

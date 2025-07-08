@@ -1,9 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login , logout
-
+from django.contrib.contenttypes.models import ContentType
 from base.forms import PfpForm
 from usermanager.models import UserRegistrationForm, FriendRequest, Notification, Profile
 
@@ -28,7 +28,6 @@ def loginview(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            # if you need to prompt for missing email, do it here:
             if not user.email:
                return redirect('usermanager:email-prompt')
             return redirect('base:home')
@@ -113,7 +112,7 @@ def edit_profile(request):
         return redirect('usermanager:user-profile', pk=request.user.id)
     return render(request, 'usermanager/edit-profile.html', {'form': form})
 
-
+@login_required(login_url='usermanager:user-login')
 def sendreq(request, pk):
     to_user = get_object_or_404(User, pk=pk)
 
@@ -147,8 +146,13 @@ def sendreq(request, pk):
 #notif inbox
 @login_required(login_url='usermanager:user-login')
 def notifbox(request):
-    notifs = Notification.objects.filter(to_user=request.user,notif_type='friend_request',is_read=False)
-    return render(request, 'usermanager/inbox.html', {'notifs': notifs})
+    notifs = Notification.objects.filter(
+        to_user=request.user,
+        is_read=False
+    )
+    return render(request, 'usermanager/inbox.html', {
+        'notifs': notifs
+    })
 
 @login_required(login_url='usermanager:user-login')
 def respondreq(request, notif_id, action):
@@ -157,10 +161,23 @@ def respondreq(request, notif_id, action):
  FriendRequest,from_user=notif.from_user,to_user=request.user,status='pending')
     if action == 'accept':
         fr.accept()
+
         notif.is_read = True
         notif.save()
-        Notification.objects.create(to_user=fr.from_user,from_user=request.user,notif_type='friend_accept')
-        messages.success(request, "You’re now friends!")
+        Notification.objects.create(
+            to_user=fr.from_user,
+            from_user=request.user,
+            notif_type='friend_accept',
+            content_type=ContentType.objects.get_for_model(FriendRequest),
+            object_id=fr.pk
+        )
+        Notification.objects.create(
+            to_user=request.user,
+            from_user=fr.from_user,
+            notif_type='friend_accept',
+            content_type=ContentType.objects.get_for_model(FriendRequest),
+            object_id=fr.pk
+        )
     elif action == 'reject':
         fr.reject()
         notif.is_read = True
@@ -170,3 +187,23 @@ def respondreq(request, notif_id, action):
         messages.error(request, "Unknown action.")
 
     return redirect('usermanager:inbox')
+
+
+@login_required(login_url='usermanager:user-login')
+@permission_required('usermanager.can_ban_user', raise_exception=True)
+def ban(request, user_id):
+    #admin exclusion
+    target = get_object_or_404(User, pk=user_id)
+    if target.is_superuser:
+        messages.error(request, "Can't ban the admin.")
+        return redirect('usermanager:user-profile', pk=user_id)
+
+    #flag
+    target.is_active = not target.is_active
+    target.save()
+
+    if not target.is_active:
+        messages.success(request, f"{target.username} has been banned.")
+    else:
+        messages.success(request, f"{target.username} has been unbanned.")
+    return redirect('usermanager:user-profile', pk=user_id)

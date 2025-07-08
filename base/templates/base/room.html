@@ -7,10 +7,12 @@
 <div class="post-container">
 <p><a href="{% url 'usermanager:user-profile' room.host.id %}">@{{room.host}}</a>-OP</p>
 <h1>{{room.name}}</h1>
+    <span class="badge bg-secondary post-tag">{{ item.topic.name }}</span>
   {% if room.image %}
     <img src="{{ room.image.url }}" alt="{{ room.name }}">
   {% endif %}
 <p>{{room.description}}</p>
+ {% if user.is_authenticated %}
 <form method="post" action="{% url 'base:room-like' room.id %}">
   {% csrf_token %}
   <button type="submit">
@@ -22,6 +24,7 @@
     {{ room.likes.count }}
   </button>
 </form>
+{% endif %}
 <a class="btn btn-secondary"
      href="{% url 'base:share-room' room.id %}">
     🔁 Share
@@ -44,6 +47,7 @@
       </p>
       {% else %}
       <p>{{ message.body }}</p>
+       {% if user.is_authenticated %}
        <form method="post" action="{% url 'base:message-like' message.id %}">
        {% csrf_token %}
         <button type="submit">
@@ -55,6 +59,7 @@
         {{ msg.likes.count }}
         </button>
        </form>
+       {% endif %}
        {% endif %}
 
        {% if request.user == message.user or perms.base.delete_message %}

@@ -4,64 +4,101 @@
 {% block title %}Home – Forum{% endblock title %}
 
 {% block content %}
-  <h1>hey!! :D</h1>
-  <div class="home-container">
-    <div class="main-feed">
-      <a href="{% url 'base:create-post' %}">What's on your mind?</a>
-      <hr>
+<hr>
+<h2>Currently trending</h2>
+<hr>
 
-      {% for item in feed_items %}
-        <div class="feed-item">
-          {% if item.original %}
-            <p><strong>{{ item.user.username }}</strong> shared:</p>
-            <div class="shared-block">
-              <a href="{% url 'base:room' item.original.id %}">
-                {{ item.original.name }}
-              </a>
-              <small>by {{ item.original.host.username }}</small>
-            </div>
-            {% if item.caption %}
-              <blockquote>{{ item.caption }}</blockquote>
-            {% endif %}
-            {% if item.image %}
-              <img src="{{ item.image.url }}" alt="Share image">
-            {% endif %}
+<div class="home-container">
+  <div class="main-feed">
 
-          {% else %}
-            {# render a normal Room post #}
-            {% if request.user == item.host or perms.base.delete_room %}
-              <a href="{% url 'base:update-post' item.id %}">Edit</a>
-              <a href="{% url 'base:delete-post' item.id %}">Delete</a>
-            {% endif %}
+    {% for item in feed_items %}
+      <div class="feed-item position-relative p-3">
 
-            <a href="{% url 'usermanager:user-profile' item.host.id %}">
-              {{ item.host.username }}
+        {% if item.original %}
+          {# — Shared post branch — #}
+          {% if request.user == item.host or perms.base.delete_room %}
+            <a href="{% url 'base:delete-shared' item.id %}">Delete</a>
+          {% endif %}
+          <p><strong>{{ item.user.username }}</strong> shared:</p>
+          <div class="shared-block">
+            <a href="{% url 'base:room' item.original.id %}">
+              {{ item.original.name }}
             </a>
-            <h5>
-              <a href="{% url 'base:room' item.id %}">{{ item.name }}</a>
-            </h5>
-            <small>{{ item.topic.name }}</small>
+            <small>by {{ item.original.host.username }}</small>
+          </div>
+          {% if item.caption %}
+            <blockquote>{{ item.caption }}</blockquote>
+          {% endif %}
+          {% if item.image %}
+            <img src="{{ item.image.url }}" class="feed_img" alt="Share image">
           {% endif %}
 
-          <hr>
+        {% else %}
+          {# — Normal post branch — #}
+          {% if request.user.is_authenticated %}
+            <div class="dropdown position-absolute" style="top:.5rem; right:.5rem;">
+              <button
+                class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                type="button"
+                id="editDropdown{{ item.id }}"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >⋮</button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="editDropdown{{ item.id }}">
+                <li><a class="dropdown-item" href="{% url 'base:share-room' item.id %}">Share</a></li>
+                {% if request.user == item.host or perms.base.delete_room %}
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'base:update-post' item.id %}">Edit</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item text-danger" href="{% url 'base:delete-post' item.id %}">Delete</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          {% endif %}
+
+          <a href="{% url 'usermanager:user-profile' item.host.id %}">
+            {{ item.host.username }}
+          </a>
+
+          <div class="feed-header mb-3">
+            <h5><a href="{% url 'base:room' item.id %}">{{ item.name }}</a></h5>
+            {% if item.topic %}
+              <span class="badge bg-secondary post-tag">{{ item.topic.name }}</span>
+            {% endif %}
+          </div>
+
+          {% if item.image %}
+            <img src="{{ item.image.url }}" class="feed_img" alt="Post image">
+          {% endif %}
+        {% endif %}
+
+        <hr>
+      </div>
+    {% empty %}
+      <p>No posts or shares to display.</p>
+    {% endfor %}
+
+  </div>
+
+  <div class="for-you-sidebar">
+    {% if request.user.is_authenticated %}
+      <h2>For You</h2>
+      {% for room in for_you_rooms %}
+        <div class="for-you-room">
+          <a href="{% url 'base:room' room.id %}">{{ room.name }}</a>
+          <p>by {{ room.host.username }}</p>
         </div>
       {% empty %}
-        <p>No posts or shares to display.</p>
+        <p>No personalized recommendations yet.</p>
       {% endfor %}
-    </div>
-
- <div class="for-you-sidebar">
-      {% if request.user.is_authenticated %}
-        <h2>For You</h2>
-        {% for room in for_you_rooms %}
-          <div class="for-you-room">
-            <a href="{% url 'base:room' room.id %}">{{ room.name }}</a>
-            <p>by {{ room.host.username }}</p>
-          </div>
-        {% empty %}
-          <p>No personalized recommendations yet.</p>
-        {% endfor %}
-      {% endif %}
-    </div>
+    {% else %}
+      <h4>
+        <a class="bigger" href="{% url 'usermanager:user-login' %}">Login</a>
+        or
+        <a class="bigger" href="{% url 'usermanager:user-register' %}">Sign up</a>
+        and get to share your thoughts, personalize your feed and much more!
+      </h4>
+    {% endif %}
   </div>
+</div>
 {% endblock content %}

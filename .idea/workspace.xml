@@ -4,25 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="friend request logic+notification engine and UI">
-      <change afterPath="$PROJECT_DIR$/base/templates/base/room-share.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/default-pfp.png" afterDir="false" />
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="format fixes">
+      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usermanager/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/User_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/User_project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/templates/base/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/base/templates/base/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/templates/base/room-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/base/templates/base/room-form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/templates/base/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/base/templates/base/room.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usermanager/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usermanager/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usermanager/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usermanager/notif_engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/notif_engine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usermanager/templates/usermanager/inbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/templates/usermanager/inbox.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usermanager/templates/usermanager/user-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/templates/usermanager/user-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usermanager/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usermanager/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -64,19 +66,22 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.home.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.main.html.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Django Dev.executor&quot;: &quot;Run&quot;,
     &quot;Python.urls.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Serena_backup/PycharmProjects/User_project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Serena_backup/PycharmProjects/User_project/manage.py&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -87,7 +92,30 @@
       <recent name="C:\Users\Serena_backup\PycharmProjects\User_project\base\templates\base" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Django Dev">
+    <configuration name="Django Dev" type="PythonConfigurationType" factoryName="Python">
+      <module name="User_project" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="User_project.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Serena_backup\PycharmProjects\User_project" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="User_project" type="Python.DjangoServer" factoryName="Django server">
       <module name="User_project" />
       <option name="ENV_FILES" value="" />
@@ -112,6 +140,9 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Django Dev" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -133,6 +164,17 @@
       <workItem from="1751367313314" duration="4185000" />
       <workItem from="1751447621953" duration="1331000" />
       <workItem from="1751576157459" duration="4309000" />
+      <workItem from="1751708796949" duration="1336000" />
+      <workItem from="1751710746916" duration="2015000" />
+      <workItem from="1751726213495" duration="579000" />
+      <workItem from="1751728746535" duration="7202000" />
+      <workItem from="1751792613688" duration="806000" />
+      <workItem from="1751816138840" duration="1450000" />
+      <workItem from="1751822272067" duration="3817000" />
+      <workItem from="1751835621263" duration="674000" />
+      <workItem from="1751879791004" duration="7115000" />
+      <workItem from="1751889392613" duration="6365000" />
+      <workItem from="1751974166295" duration="6369000" />
     </task>
     <task id="LOCAL-00001" summary="user authentication+post functionality">
       <option name="closed" value="true" />
@@ -174,7 +216,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751646929166</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="post sharing+media submission support">
+      <option name="closed" value="true" />
+      <created>1751708407312</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1751708407312</updated>
+    </task>
+    <task id="LOCAL-00007" summary="format fixes">
+      <option name="closed" value="true" />
+      <created>1751708646073</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1751708646073</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +255,8 @@
     <MESSAGE value="user app and friendlist" />
     <MESSAGE value="user login with mail and custom backend" />
     <MESSAGE value="friend request logic+notification engine and UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="friend request logic+notification engine and UI" />
+    <MESSAGE value="post sharing+media submission support" />
+    <MESSAGE value="format fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="format fixes" />
   </component>
 </project>

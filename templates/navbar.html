@@ -1,31 +1,97 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<a href="/">
-  <h1>funny logo</h1>
-</a>
 <hr>
-<div>
-{% if request.user.is_authenticated %}
-<p>Welcome back, {{request.user}}!</p>
-<a href="{% url 'usermanager:user-logout' %}">Logout</a>
-{% else %}
-<a href="{% url 'usermanager:user-login' %}">Login</a>
-{% endif %}
-</div>
-{% if request.user.is_authenticated %}
-  <a href="{% url 'usermanager:inbox' %}">
-    Notifications{% if unread_notifs %} ({{ unread_notifs }}){% endif %}
-  </a>
-{% endif %}
-{% if request.user.is_authenticated %}
-<div>
-    <a href="{% url 'usermanager:user-profile' request.user.id %}">{{request.user.username}}</a>
-</div>
-{% endif %}
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+    <div class="container-fluid">
+        <!-- far-left logo/brand -->
+        <a class="navbar-brand" href="{% url 'base:home' %}">
+            <img src="{% static 'images/logo.png' %}" height="30" alt="Logo">
+        </a>
+
+        <!-- toggler for mobile -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto align-items-center">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'usermanager:inbox' %}">
+                        Inbox {% if unread_notifs %}<span class="badge bg-danger">{{ unread_notifs }}</span>{% endif %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'base:create-post' %}">
+                        Create +
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle d-flex align-items-center"
+                            href="#"
+                            id="profileDropdown"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        {% if profile.pfp %}
+                        <img
+                                src="{{ profile.pfp.url }}"
+                                alt="{{ profile_user.username }}’s avatar"
+                                class="rounded-circle"
+                                width="40"
+                                height="40"
+                        />
+                        {% else %}
+                        {# fallback avatar #}
+                        <img
+                                src="{% static 'images/default-pfp.png' %}"
+                                alt="Default avatar"
+                                class="rounded-circle"
+                                width="40"
+                                height="40"
+                        />
+                        {% endif %}
+                        {{ request.user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'usermanager:user-profile' request.user.id %}">
+                                Your Profile
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'usermanager:user-logout' %}">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'usermanager:user-login' %}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
 </body>
 </html>

@@ -3,6 +3,8 @@ from itertools import chain
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.contenttypes.models import ContentType
+from usermanager.models import Notification
 from .models import Room, Message, TopicCount, Share
 from .forms import PostForm, ShareForm
 from django.db.models import Count, Q
@@ -42,24 +44,48 @@ def home(request):
 
 def room(request, pk):
    room = get_object_or_404(Room, pk=pk)
-   #TOPIC PREFERENCE COUNT
-   affinity, _ = TopicCount.objects.get_or_create(user=request.user, topic=room.topic)
-   affinity.score += 1
-   affinity.save()
+   if request.user.is_authenticated:
+       affinity, _ = TopicCount.objects.get_or_create(
+           user=request.user,
+           topic=room.topic
+       )
+       affinity.score += 1
+       affinity.save()
    comments = room.message_set.all().order_by('-created')
    if request.method == 'POST':
-       message = Message.objects.create(user=request.user,room=room,body=request.POST.get('body'))
-       return redirect('base:room',pk=room.id)
+       comments = Message.objects.create(
+           user=request.user,
+           room=room,
+           body=request.POST.get('body')
+       )
+       if room.host != request.user:
+           Notification.objects.create(
+               to_user=room.host,
+               from_user=request.user,
+               notif_type='post_comment',
+               content_type=ContentType.objects.get_for_model(Message),
+               object_id=comments.pk
+           )
+       return redirect('base:room', pk=room.id)
    context = {'room':room, 'comments':comments}
    return render(request, 'base/room.html', context)
 
 @login_required(login_url='usermanager:user-login')
 def postlike(request, pk):
     room = get_object_or_404(Room, pk=pk)
-    if request.user in room.likes.all():
+    liked_before = request.user in room.likes.all()
+
+    if liked_before:
         room.likes.remove(request.user)
     else:
         room.likes.add(request.user)
+        Notification.objects.create(
+            to_user     = room.host,
+            from_user   = request.user,
+            notif_type  = 'post_like',
+            content_type = ContentType.objects.get_for_model(Room),
+            object_id    = room.pk
+        )
     return redirect('base:room', pk=pk)
 
 
@@ -78,13 +104,23 @@ def createpost(request):
     context={"form":form}
     return render(request, "base/room-form.html", context)
 
-@login_required
+@login_required(login_url='usermanager:user-login')
 def commentlike(request, pk):
     msg = get_object_or_404(Message, pk=pk)
-    if request.user in msg.likes.all():
+    liked_before = request.user in msg.likes.all()
+
+    if liked_before:
         msg.likes.remove(request.user)
     else:
         msg.likes.add(request.user)
+        Notification.objects.create(
+            to_user     = msg.user,
+            from_user   = request.user,
+            notif_type  = 'comment_like',
+            content_type = ContentType.objects.get_for_model(Message),
+            object_id    = msg.pk
+        )
+
     return redirect('base:room', pk=msg.room.pk)
 
 @login_required(login_url='usermanager:user-login')
@@ -112,6 +148,17 @@ def deletepost(request, pk):
        return redirect('base:home')
 
     return render(request, 'base/delete.html', {"obj":room})
+
+@login_required(login_url='usermanager:user-login')
+def deleteshared(request, pk):
+    sharedroom = Share.objects.get(id=pk)
+    if request.user == Share.user or request.user.has_perm('base.delete_room'):
+     if request.method == 'POST':
+       sharedroom.delete()
+       return redirect('base:home')
+
+    return render(request, 'base/delete.html', {"obj":room})
+
 
 @login_required(login_url='usermanager:user-login')
 def deletecomment(request, pk):
@@ -142,6 +189,14 @@ def shareroom(request, pk):
             share.user= request.user
             share.original= original
             share.save()
+           #notif
+            Notification.objects.create(
+                to_user=original.host,
+                from_user=request.user,
+                notif_type='post_share',
+                content_type=ContentType.objects.get_for_model(Share),
+                object_id=share.pk
+            )
             return redirect('base:home')
     else:
         form = ShareForm()

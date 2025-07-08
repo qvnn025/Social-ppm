@@ -12,4 +12,5 @@ urlpatterns = [
     path('send-request/<int:pk>/', views.sendreq, name='send-req'),
     path('respond-request/<int:notif_id>/<str:action>/', views.respondreq, name='respond-req'),
     path('notif-inbox/', views.notifbox, name='inbox'),
+    path('user/<int:user_id>/ban/', views.ban, name='ban'),
 ]

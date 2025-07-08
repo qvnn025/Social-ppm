@@ -23,9 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # all auth/usermanager routes first (or under a clear prefix)
     path('account/', include('usermanager.urls', namespace='usermanager')),
-    # then your forum/base app
     path('', include('base.urls', namespace='base')),
 ]
 
