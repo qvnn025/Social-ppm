@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="icons">
+      <change afterPath="$PROJECT_DIR$/railway.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +157,7 @@
       <workItem from="1751879791004" duration="7115000" />
       <workItem from="1751889392613" duration="6365000" />
       <workItem from="1751974166295" duration="6369000" />
-      <workItem from="1751989594789" duration="1113000" />
+      <workItem from="1751989594789" duration="1881000" />
     </task>
     <task id="LOCAL-00001" summary="user authentication+post functionality">
       <option name="closed" value="true" />
@@ -283,6 +284,7 @@
     <MESSAGE value="pre-deployment back-up" />
     <MESSAGE value="deployment start" />
     <MESSAGE value="icons" />
-    <option name="LAST_COMMIT_MESSAGE" value="icons" />
+    <MESSAGE value="first fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="first fix" />
   </component>
 </project>
