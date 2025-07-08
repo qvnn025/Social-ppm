@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix13" />
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix14">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -379,7 +381,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752008375155</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fix14">
+      <option name="closed" value="true" />
+      <created>1752008997382</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1752008997382</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,6 +431,7 @@
     <MESSAGE value="fix11" />
     <MESSAGE value="fix12" />
     <MESSAGE value="fix13" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix13" />
+    <MESSAGE value="fix14" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix14" />
   </component>
 </project>
