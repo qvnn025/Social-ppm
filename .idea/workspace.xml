@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix12">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
-    </list>
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix13" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -366,7 +363,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752007663991</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="fix13">
+      <option name="closed" value="true" />
+      <created>1752008361324</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1752008361324</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix13">
+      <option name="closed" value="true" />
+      <created>1752008375155</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1752008375155</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,6 +420,7 @@
     <MESSAGE value="fix10" />
     <MESSAGE value="fix11" />
     <MESSAGE value="fix12" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix12" />
+    <MESSAGE value="fix13" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix13" />
   </component>
 </project>
