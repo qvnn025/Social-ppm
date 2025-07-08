@@ -17,6 +17,11 @@ from django.conf.global_settings import STATICFILES_DIRS
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -41,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usermanager.apps.UsermanagerConfig',
     'base.apps.BaseConfig',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +144,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL  = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+#cloudinary-django integration
+cloudinary.config(
+    cloud_name="dwlilunbx",
+    api_key="622827262491734",
+    api_secret="2tiVZFcI7h3qf-a-L06WThyMblE",
+)
