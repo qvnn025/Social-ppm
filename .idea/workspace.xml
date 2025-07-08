@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix14">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix15" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -389,7 +387,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752008997382</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fix15">
+      <option name="closed" value="true" />
+      <created>1752009523280</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1752009523280</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +413,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="user authentication+post functionality" />
     <MESSAGE value="comments and post functionality" />
     <MESSAGE value="user app and friendlist" />
     <MESSAGE value="user login with mail and custom backend" />
@@ -432,6 +437,7 @@
     <MESSAGE value="fix12" />
     <MESSAGE value="fix13" />
     <MESSAGE value="fix14" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix14" />
+    <MESSAGE value="fix15" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix15" />
   </component>
 </project>
