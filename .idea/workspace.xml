@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="final notif engine and fixes+ban feature for mods">
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="pre-deployment back-up">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
     </list>
@@ -221,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751984507055</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="pre-deployment back-up">
+      <option name="closed" value="true" />
+      <created>1751985861107</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1751985861107</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +256,7 @@
     <MESSAGE value="post sharing+media submission support" />
     <MESSAGE value="format fixes" />
     <MESSAGE value="final notif engine and fixes+ban feature for mods" />
-    <option name="LAST_COMMIT_MESSAGE" value="final notif engine and fixes+ban feature for mods" />
+    <MESSAGE value="pre-deployment back-up" />
+    <option name="LAST_COMMIT_MESSAGE" value="pre-deployment back-up" />
   </component>
 </project>
