@@ -75,7 +75,12 @@ class Share(models.Model):
     original= models.ForeignKey(Room, on_delete=models.CASCADE, related_name='shares')
     caption= models.TextField(blank=True)
     updated = models.DateTimeField(auto_now=True)
-    image= models.ImageField(upload_to='shares/', blank=True, null=True)
+    # cloudinary switch
+    if ENVIRONMENT:
+        from cloudinary.models import CloudinaryField
+        image = CloudinaryField('sharedpost_image', blank=True, null=True)
+    else:
+      image= models.ImageField(upload_to='shares/', blank=True, null=True)
     created= models.DateTimeField(auto_now_add=True)
 
     class Meta:
