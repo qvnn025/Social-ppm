@@ -55,7 +55,7 @@ A web app in Django that is meant to resemble classic game forums, with threads,
        * Manages everything related to the posts and re-posts, comments, likes and feeds.
     * **Usermanager**
        * As the name implies, this app contains everything related to the user themselves, the log-in/outs, registrations, profile and the notification system.
-  * Hosted on Railway, Built with Django framework, Whitenoise, PostgresDB and image hosting is done through Cloudinary-- more in-depth requirements for downloading the project and running locally are listed inside the [requirements file](https://github.com/qvnn025/Social-ppm/blob/master/requirements.txt "requirements")
+  * Hosted on Railway, Built with Django framework, Whitenoise, PostgresDB and image hosting is done through Cloudinary-- more in-depth requirements for downloading the project and running locally are listed inside the [requirements file](https://github.com/qvnn025/Social-ppm/blob/master/requirements.txt "requirements") , [here](https://github.com/qvnn025/Social-ppm/tree/adm) for the rest.
 
 
 
