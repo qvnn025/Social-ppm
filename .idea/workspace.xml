@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="fix16">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="c015a40e-3e31-44a7-be56-127ee059911c" name="Changes" comment="cloudinary service 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/User_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usermanager/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/usermanager/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -409,7 +407,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752010306976</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="cloudinary service">
+      <option name="closed" value="true" />
+      <created>1752054588910</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1752054588910</updated>
+    </task>
+    <task id="LOCAL-00032" summary="cloudinary service 2">
+      <option name="closed" value="true" />
+      <created>1752056272314</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1752056272314</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -427,8 +441,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="user app and friendlist" />
-    <MESSAGE value="user login with mail and custom backend" />
     <MESSAGE value="friend request logic+notification engine and UI" />
     <MESSAGE value="post sharing+media submission support" />
     <MESSAGE value="format fixes" />
@@ -452,6 +464,8 @@
     <MESSAGE value="fix14" />
     <MESSAGE value="fix15" />
     <MESSAGE value="fix16" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix16" />
+    <MESSAGE value="cloudinary service" />
+    <MESSAGE value="cloudinary service 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="cloudinary service 2" />
   </component>
 </project>

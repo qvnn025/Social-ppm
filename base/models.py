@@ -1,6 +1,9 @@
+import os
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+#CLOUDINARY
+ENVIRONMENT=os.environ.get("ENVIRONMENT") in ['production', True]
 
 #POST TOPIC (tags)
 class Topic(models.Model):
@@ -19,7 +22,14 @@ class Room(models.Model):
     topic=models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200)
     description =models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='room_images/', blank=True,null=True)
+    #cloudinary switch
+    if ENVIRONMENT:
+        from cloudinary.models import CloudinaryField
+        image=CloudinaryField('post_image', blank=True, null=True)
+    else:
+      image = models.ImageField(upload_to='room_images/', blank=True,null=True)
+
+
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_rooms',blank=True)

@@ -1,3 +1,4 @@
+import os
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -7,6 +8,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.contenttypes.models import ContentType
 
+#CLOUDINARY
+ENVIRONMENT=os.environ.get("ENVIRONMENT") in ['production', True]
 
 class Profile(models.Model):
     user=models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -16,7 +19,12 @@ class Profile(models.Model):
         blank=True,
     )
     bio=models.TextField(blank=True)
-    pfp = models.ImageField(upload_to='pfps/',blank=True,null=True)
+    # cloudinary switch
+    if ENVIRONMENT:
+        from cloudinary.models import CloudinaryField
+        pfp = CloudinaryField('pf_image', blank=True, null=True)
+    else:
+        pfp = models.ImageField(upload_to='pfps/',blank=True,null=True)
 
     @receiver(post_save, sender=settings.AUTH_USER_MODEL)
     def create_user_profile(sender, instance, created, **kwargs):
