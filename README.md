@@ -1,5 +1,5 @@
 # An (un)official Game Forum
-A relatively small web app in Django that is meant to resemble classic game forums, with threads, comment sections, re-post functionalities and more. Share your thoughts over the game, your achievements, and find a community!<sub>_Game does not exist and does not come with the web app_</sub> 
+A web app in Django that is meant to resemble classic game forums, with threads, comment sections, re-post functionalities and more. Share your thoughts over the game, your achievements, and find a community!<sub>_Game does not exist and does not come with the web app_</sub> 
 
 -> [Try it yourself!](https://web-production-b59ae.up.railway.app/ "Game Forum Project") <-
 
@@ -8,8 +8,8 @@ A relatively small web app in Django that is meant to resemble classic game foru
 
 * **User Profiles**
 
-  * Create and customize your own profile.
-  * See all that you posted in your profile.
+  * Create your own profile.
+  * See all that you posted and how it's doing in a feed inside the profile.
 
 * **Follow Requests**
 
@@ -22,7 +22,7 @@ A relatively small web app in Django that is meant to resemble classic game foru
   * Like and share content or comments posted by others.
   * Comment on posts to engage in discussions.
  
-* **Posts**
+* **Share-post functionality**
 
   * Do you feel like your response to a thread deserves a post on its own? You can share any post inside the platform itself.
   * Add captions, or images to your shared threads.
@@ -55,13 +55,13 @@ A relatively small web app in Django that is meant to resemble classic game foru
        * Manages everything related to the posts and re-posts, comments, likes and feeds.
     * **Usermanager**
        * As the name implies, this app contains everything related to the user themselves, the log-in/outs, registrations, profile and the notification system.
-  * Hosted on Railway, Built with Django framework, Whitenoise, PostgresDB and image hosting is done through Cloudinary-- more in-depth requirements are listed inside the [requirements file](https://github.com/qvnn025/Social-ppm/blob/master/requirements.txt "requirements")
+  * Hosted on Railway, Built with Django framework, Whitenoise, PostgresDB and image hosting is done through Cloudinary-- more in-depth requirements for downloading the project and running locally are listed inside the [requirements file](https://github.com/qvnn025/Social-ppm/blob/master/requirements.txt "requirements")
 
 
 
 ## Disclaimer
 
-This is a University project, and everything used inside the app is done for educational purposes. Everything written in the posts, or shared by users isn't representative of, or a responsability of, my university or myself.
+This is a University project, and everything used inside the app is done for educational purposes. In light of that, everything written in the posts, or shared by users isn't representative of, or a responsability of, my university or myself.
 
 
 
