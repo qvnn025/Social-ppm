@@ -59,9 +59,8 @@ A relatively small web app in Django that is meant to resemble classic game foru
 
 
 
-## 📄 License
+## Disclaimer
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 This is a University project, and everything used inside the app is done for educational purposes. Everything written in the posts, or shared by users isn't representative of, or a responsability of, my university or myself.
 
 
