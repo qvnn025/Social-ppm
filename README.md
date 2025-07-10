@@ -47,6 +47,9 @@ A web app in Django that is meant to resemble classic game forums, with threads,
   * If a moderator chooses to, they can ban a user, or un-ban them.     
      
 <hr>
+## Quick User Guide
+To register as a new user, simply click over the Sign up button to the right side of your main feed, or through the sign-up option in the log-in interface. Once you've registered successfully (mind that duplicate emails aren't allowed), you'll be able to access your profile from the navbar of the site, where you'll also see your profile picture, date of creation, number of followers, and your own posts to the right. Through the same navbar I mentioned, you can also create new posts, and check your inbox. Inside any post you can leave comments and like both comments and the post itself. Through the share button, either inside every post, or through the three-dot icon on the right, you'll be able to re-post any thread with a personalized caption, or even a reaction image. To send requests to other users, simply head to their profile, by clicking their name on the posts, or home feed, and send the request from there--you'll get a notification, if and when your pending request has been accepted by the other user.
+
 
 ## Code Structure Overview
 
